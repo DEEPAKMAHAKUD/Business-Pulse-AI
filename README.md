@@ -36,4 +36,4 @@ This project is proprietary and confidential.
 
 ## Contact
 
-[Your Name]
+[Deepak Mahakud]
