@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{{ business.name }} - BusinessPulse AI{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h2>{{ business.name }}</h2>
+    <p><strong>Owner:</strong> {{ business.owner.username }}</p>
+    <p><strong>Created:</strong> {{ business.created_at|date:"M d, Y" }}</p>
+    <p><strong>Last Updated:</strong> {{ business.updated_at|date:"M d, Y" }}</p>
+    
+    <div class="mt-4">
+      <a href="{% url 'business_update' business.id %}" class="btn btn-outline-primary me-2">Edit</a>
+      <a href="{% url 'business_delete' business.id %}" class="btn btn-outline-danger">Delete</a>
+    </div>
+    
+    <div class="mt-4">
+      <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+    
+    <!-- Placeholder for analytics -->
+    <div class="mt-5">
+      <h2>Analytics Placeholder</h2>
+      <p>This is where the analytics for this business will be displayed.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

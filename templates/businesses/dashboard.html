@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - BusinessPulse AI{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h1 class="mb-4">Welcome, {{ user.username }}!</h1>
+    
+    <div class="mb-4">
+      <a href="{% url 'business_create' %}" class="btn btn-primary">Create New Business</a>
+    </div>
+    
+    <h2>Your Businesses</h2>
+    {% if businesses %}
+      <div class="list-group">
+        {% for business in businesses %}
+          <a href="{% url 'business_detail' business.id %}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ business.name }}</h5>
+              <small>{{ business.created_at|date:"M d, Y" }}</small>
+            </div>
+            <p class="mb-1">Owner: {{ business.owner.username }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info">
+        You don't have any businesses yet. <a href="{% url 'business_create' %}">Create your first business</a> to get started.
+      </div>
+    {% endif %}
+    
+    <!-- Placeholder for analytics -->
+    <div class="mt-5">
+      <h2>Analytics Placeholder</h2>
+      <p>This is where your business analytics will be displayed.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

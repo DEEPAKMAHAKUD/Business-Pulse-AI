@@ -1,0 +1,148 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a pyinstaller
+#  command line interface
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+*.db
+db.sqlite3
+db.sqlite3-journal
+
+# Media files
+# Typically users should not commit uploaded files, although if they have
+# a small number in development they might find it useful to keep them
+# around, so per-project preference is commented out.
+# media/
+
+# Parent directory
+# Usually not needed if not using a tool like django-multitenant which
+# relies on there being a same-named directory alongside the project.
+# ../
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, you want them
+#   .python-version
+
+# pipenv
+#   According to the documentation, you should not ignore the Pipfile.lock because
+#   it contains versions needed for reproducible builds and is, therefore,
+#   part of the source control. However, if you are treating your pipenv-
+#   managed library or package as an external library, the same as above,
+#   then you might want to ignore it.
+#   https://pipenv.pypa.io/en/latest/basics.html#lockfile
+# Pipfile.lock
+
+# Pytorch Lightning
+#   https://pytorchlightning.ai/
+.lightning/
+
+# Cedar
+#   https://github.com/cedar-lang/cedar
+.cedar/
+
+# Copied answers from Copilot
+copilot***
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__
+/staticfiles
+/mediafiles
+
+# If your build process includes remaining package files, then ignore them.
+# https://docs.djangoproject.com/en/2.0/ref/settings/#std:separator
+# Runtime/debug files
+latest_response.html
+response.html
+server.err
+server.out
