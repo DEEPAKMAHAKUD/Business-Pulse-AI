@@ -27,7 +27,29 @@
               <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'business_list' %}">Businesses</a>
+              <a class="nav-link" href="{% url 'upload_data' %}">Upload Data</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="analyticsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Analytics
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="analyticsDropdown">
+                <li><a class="dropdown-item disabled" href="#">Sales <span class="text-muted">(Coming Soon)</span></a></li>
+                <li><a class="dropdown-item disabled" href="#">Customers <span class="text-muted">(Coming Soon)</span></a></li>
+                <li><a class="dropdown-item disabled" href="#">Products <span class="text-muted">(Coming Soon)</span></a></li>
+                <li><a class="dropdown-item disabled" href="#">Expenses <span class="text-muted">(Coming Soon)</span></a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="advancedDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Advanced
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="advancedDropdown">
+                <li><a class="dropdown-item disabled" href="#">Forecast <span class="text-muted">(Coming Soon)</span></a></li>
+                <li><a class="dropdown-item disabled" href="#">Anomalies <span class="text-muted">(Coming Soon)</span></a></li>
+                <li><a class="dropdown-item disabled" href="#">AI Assistant <span class="text-muted">(Coming Soon)</span></a></li>
+                <li><a class="dropdown-item disabled" href="#">Reports <span class="text-muted">(Coming Soon)</span></a></li>
+              </ul>
             </li>
             {% endif %}
           </ul>

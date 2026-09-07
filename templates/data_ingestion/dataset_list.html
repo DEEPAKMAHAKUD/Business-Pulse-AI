@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Datasets - BusinessPulse AI{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Your Datasets</h1>
+      <a href="{% url 'upload_data' %}" class="btn btn-primary">Upload New Data</a>
+    </div>
+    
+    {% if datasets %}
+      <div class="row">
+        {% for dataset in datasets %}
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ dataset.name }}</h5>
+                <p class="card-text">
+                  <strong>Business:</strong> {{ dataset.business.name }}<br>
+                  <strong>Type:</strong> {{ dataset.get_dataset_type_display }}<br>
+                  <strong>Status:</strong> 
+                  <span class="badge {% if dataset.status == 'completed' %}bg-success{% elif dataset.status == 'failed' %}bg-danger{% elif dataset.status == 'validation_failed' %}bg-warning{% else %}bg-secondary{% endif %}">
+                    {{ dataset.get_status_display }}
+                  </span><br>
+                  <strong>Rows:</strong> {{ dataset.row_count|default:"N/A" }}<br>
+                  <strong>Columns:</strong> {{ dataset.column_count|default:"N/A" }}<br>
+                  <strong>Created:</strong> {{ dataset.created_at|date:"M d, Y" }}
+                </p>
+                <div class="d-flex gap-2">
+                  <a href="{% url 'dataset_detail' dataset.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
+                  <a href="{% url 'dataset_delete' dataset.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info text-center">
+        <h4>No datasets yet</h4>
+        <p>Upload your first dataset to get started with business analytics.</p>
+        <a href="{% url 'upload_data' %}" class="btn btn-primary">Upload Data</a>
+      </div>
+    {% endif %}
+    
+    <div class="mt-4">
+      <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

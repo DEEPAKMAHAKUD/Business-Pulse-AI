@@ -1,4 +1,3 @@
-print("Accounts views module loaded", flush=True)
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -8,7 +7,6 @@ from businesses.models import Business
 
 
 def landing_page(request):
-    print("Landing page view called", flush=True)
     return render(request, 'accounts/landing.html')
 
 
