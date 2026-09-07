@@ -60,17 +60,20 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='InventoryRecord',
+            name='Customer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.IntegerField()),
-                ('recorded_at', models.DateField()),
+                ('customer_id', models.CharField(db_index=True, max_length=100)),
+                ('name', models.CharField(blank=True, max_length=255)),
+                ('email', models.EmailField(blank=True, max_length=254)),
+                ('phone', models.CharField(blank=True, max_length=50)),
+                ('address', models.TextField(blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('business', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='inventory_records', to='businesses.Business')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='inventory_records', to='data_ingestion.product')),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('business', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='customers', to='businesses.Business')),
             ],
             options={
-                'ordering': ['-recorded_at'],
+                'ordering': ['name'],
             },
         ),
         migrations.CreateModel(
@@ -86,23 +89,6 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('business', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='businesses.Business')),
-            ],
-            options={
-                'ordering': ['name'],
-            },
-        ),
-        migrations.CreateModel(
-            name='Customer',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('customer_id', models.CharField(db_index=True, max_length=100)),
-                ('name', models.CharField(blank=True, max_length=255)),
-                ('email', models.EmailField(blank=True, max_length=254)),
-                ('phone', models.CharField(blank=True, max_length=50)),
-                ('address', models.TextField(blank=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('business', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='customers', to='businesses.Business')),
             ],
             options={
                 'ordering': ['name'],
@@ -144,6 +130,20 @@ class Migration(migrations.Migration):
                 'ordering': ['-date'],
             },
         ),
+        migrations.CreateModel(
+            name='InventoryRecord',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('quantity', models.IntegerField()),
+                ('recorded_at', models.DateField()),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('business', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='inventory_records', to='businesses.Business')),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='inventory_records', to='data_ingestion.product')),
+            ],
+            options={
+                'ordering': ['-recorded_at'],
+            },
+        ),
         migrations.AlterUniqueTogether(
             name='customer',
             unique_together={('business', 'customer_id')},
@@ -162,70 +162,70 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='dataset',
-            index=models.Index(fields=['business', 'dataset_type'], name='data_ingesti_business__dataset_type_idx'),
+            index=models.Index(fields=['business', 'dataset_type'], name='data_ingesti_dataset_business_type_idx'),
         ),
         migrations.AddIndex(
             model_name='dataset',
-            index=models.Index(fields=['status'], name='data_ingesti_status_idx'),
+            index=models.Index(fields=['status'], name='data_ingesti_dataset_status_idx'),
         ),
         migrations.AddIndex(
             model_name='dataset',
-            index=models.Index(fields=['created_at'], name='data_ingesti_created_at_idx'),
+            index=models.Index(fields=['created_at'], name='data_ingesti_dataset_created_at_idx'),
         ),
         migrations.AddIndex(
             model_name='dataimport',
-            index=models.Index(fields=['dataset', 'import_status'], name='data_ingesti_dataset__import_status_idx'),
+            index=models.Index(fields=['dataset', 'import_status'], name='data_ingesti_import_dataset_status_idx'),
         ),
         migrations.AddIndex(
             model_name='dataimport',
-            index=models.Index(fields=['created_at'], name='data_ingesti_created_at_idx'),
+            index=models.Index(fields=['created_at'], name='data_ingesti_import_created_at_idx'),
         ),
         migrations.AddIndex(
             model_name='customer',
-            index=models.Index(fields=['business', 'customer_id'], name='data_ingesti_business__customer_id_idx'),
+            index=models.Index(fields=['business', 'customer_id'], name='data_ingesti_customer_business_id_idx'),
         ),
         migrations.AddIndex(
             model_name='customer',
-            index=models.Index(fields=['email'], name='data_ingesti_email_idx'),
+            index=models.Index(fields=['email'], name='data_ingesti_customer_email_idx'),
         ),
         migrations.AddIndex(
             model_name='product',
-            index=models.Index(fields=['business', 'product_id'], name='data_ingesti_business__product_id_idx'),
+            index=models.Index(fields=['business', 'product_id'], name='data_ingesti_product_business_id_idx'),
         ),
         migrations.AddIndex(
             model_name='product',
-            index=models.Index(fields=['sku'], name='data_ingesti_sku_idx'),
+            index=models.Index(fields=['sku'], name='data_ingesti_product_sku_idx'),
         ),
         migrations.AddIndex(
             model_name='product',
-            index=models.Index(fields=['category'], name='data_ingesti_category_idx'),
+            index=models.Index(fields=['category'], name='data_ingesti_product_category_idx'),
         ),
         migrations.AddIndex(
             model_name='sale',
-            index=models.Index(fields=['business', 'date'], name='data_ingesti_business__date_idx'),
+            index=models.Index(fields=['business', 'date'], name='data_ingesti_sale_business_date_idx'),
         ),
         migrations.AddIndex(
             model_name='sale',
-            index=models.Index(fields=['business', 'sale_id'], name='data_ingesti_business__sale_id_idx'),
+            index=models.Index(fields=['business', 'sale_id'], name='data_ingesti_sale_business_id_idx'),
         ),
         migrations.AddIndex(
             model_name='expense',
-            index=models.Index(fields=['business', 'date'], name='data_ingesti_business__date_idx_2'),
+            index=models.Index(fields=['business', 'date'], name='data_ingesti_expense_business_date_idx'),
         ),
         migrations.AddIndex(
             model_name='expense',
-            index=models.Index(fields=['business', 'expense_id'], name='data_ingesti_business__expense_id_idx'),
+            index=models.Index(fields=['business', 'expense_id'], name='data_ingesti_expense_business_id_idx'),
         ),
         migrations.AddIndex(
             model_name='expense',
-            index=models.Index(fields=['category'], name='data_ingesti_category_idx_2'),
+            index=models.Index(fields=['category'], name='data_ingesti_expense_category_idx'),
         ),
         migrations.AddIndex(
             model_name='inventoryrecord',
-            index=models.Index(fields=['business', 'product', 'recorded_at'], name='data_ingesti_business__product__record_idx'),
+            index=models.Index(fields=['business', 'product', 'recorded_at'], name='data_ingesti_inventory_business_product_date_idx'),
         ),
         migrations.AddIndex(
             model_name='inventoryrecord',
-            index=models.Index(fields=['recorded_at'], name='data_ingesti_recorded_at_idx'),
+            index=models.Index(fields=['recorded_at'], name='data_ingesti_inventory_recorded_at_idx'),
         ),
     ]

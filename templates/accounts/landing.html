@@ -3,20 +3,84 @@
 {% block title %}BusinessPulse AI - Turn business data into decisions{% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-6">
-    <h1>BusinessPulse AI</h1>
-    <p class="lead">Turn business data into decisions.</p>
-    <p>
-      BusinessPulse AI is an intelligent business analytics platform for small and medium-sized businesses.
-      Upload your business data and get insights, forecasts, and AI-powered recommendations.
-    </p>
-    <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">Get Started</a>
-    <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg">Learn More</a>
+<div class="container-fluid hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 80vh; display: flex; align-items: center;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-white">
+        <h1 class="display-4 fw-bold mb-4">BusinessPulse AI</h1>
+        <p class="lead mb-4">Turn business data into decisions.</p>
+        <p class="mb-4">
+          BusinessPulse AI is an intelligent business analytics platform for small and medium-sized businesses.
+          Upload your business data and get insights, forecasts, and AI-powered recommendations.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="{% url 'register' %}" class="btn btn-light btn-lg">Get Started</a>
+          <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">Login</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <h3 class="card-title text-center mb-4">Key Features</h3>
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Data Ingestion:</strong> Upload CSV/Excel files with validation
+              </li>
+              <li class="mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Data Profiling:</strong> Automatic analysis and quality checks
+              </li>
+              <li class="mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Smart Validation:</strong> Intelligent column detection and mapping
+              </li>
+              <li class="mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Business Insights:</strong> Ready for advanced analytics
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6">
-    <div class="ratio ratio-16x9">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <div class="feature-icon mb-3">
+            <i class="bi bi-graph-up" style="font-size: 3rem; color: #667eea;"></i>
+          </div>
+          <h5 class="card-title">Analytics</h5>
+          <p class="card-text">Comprehensive business analytics and insights</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <div class="feature-icon mb-3">
+            <i class="bi bi-robot" style="font-size: 3rem; color: #764ba2;"></i>
+          </div>
+          <h5 class="card-title">AI Assistant</h5>
+          <p class="card-text">AI-powered recommendations and insights</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <div class="feature-icon mb-3">
+            <i class="bi bi-clipboard-data" style="font-size: 3rem; color: #667eea;"></i>
+          </div>
+          <h5 class="card-title">Data Management</h5>
+          <p class="card-text">Easy data upload and management</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
